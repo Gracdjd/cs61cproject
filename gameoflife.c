@@ -23,13 +23,52 @@
 Color *evaluateOneCell(Image *image, int row, int col, uint32_t rule)
 {
 	//YOUR CODE HERE
+
 }
 
 //The main body of Life; given an image and a rule, computes one iteration of the Game of Life.
 //You should be able to copy most of this from steganography.c
 Image *life(Image *image, uint32_t rule)
 {
-	//YOUR CODE HERE
+//确定周围的九个元素，判断有几个是1，如果自己是1并且有两个或三个bumber
+	int dx[8] = {0, 0, -1, 1, -1, -1, 1, 1};
+	int dy[8] = {1, -1, 0, 0, 1, -1, -1, 1};
+	if(rule == 0x1808)
+	{
+		for(int i = 0; i < image->rows; ++i)
+		{
+			for(int j = 0; j < image->cols; ++j)
+			{
+				int count = 0;
+				for(int t = 0; t < 8; ++t)
+				{
+					int t1 = i + dx[t];
+					int t2 = i + dy[t];
+					
+					if(t1 < 0)
+					{
+						t1 = image->cols - 1;
+					}
+					else if(t1 >= image->cols)
+					{
+						t1 = 0;
+					}
+					if(t2 < 0)
+					{
+						t2 = image->rows - 1;
+					}
+					else if(t2 >= image->cols)
+					{
+						t2 = 0;
+					}
+					
+					// if(image)
+
+				}
+			}
+		}
+		
+	}
 }
 
 /*
@@ -49,5 +88,9 @@ You may find it useful to copy the code from steganography.c, to start.
 */
 int main(int argc, char **argv)
 {
-	//YOUR CODE HERE
+	if(argc != 3)
+	{
+		perror("usage: ./gameOfLife filename rule\nfilename is an ASCII PPM file (type P3) with maximum value 255.\nrule is a hex number beginning with 0x; Life is 0x1808.");
+	}
+	
 }
